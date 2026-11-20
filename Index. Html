@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Stile Sport</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #111;
+    }
+    header {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+    header p {
+      margin: 8px 0 0;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 25px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .product {
+      background: white;
+      border-radius: 15px;
+      padding: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.12);
+      text-align: center;
+    }
+    .product .image {
+      height: 260px;
+      background: #e8e8e8;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+    .product h2 {
+      margin: 10px 0;
+    }
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 12px;
+    }
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 8px;
+      background: #0070ba;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button:hover {
+      background: #005ea6;
+    }
+    .paypal {
+      max-width: 600px;
+      margin: 10px auto 40px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    .note {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>NEW STILE SPORT</h1>
+  <p>Abbigliamento sportivo</p>
+</header>
+
+<section class="products">
+
+  <div class="product">
+    <div class="image">👕</div>
+    <h2>Tuta Sportiva</h2>
+    <div class="price">60 €</div>
+
+    <select id="tagliaTuta">
+      <option value="">Scegli la taglia</option>
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+
+    <button onclick="acquista('Tuta Sportiva', 60, 'tagliaTuta')">
+      Acquista
+    </button>
+  </div>
+
+  <div class="product">
+    <div class="image">👟</div>
+    <h2>Scarpe Sportive</h2>
+    <div class="price">40 €</div>
+
+    <select id="tagliaScarpe">
+      <option value="">Scegli la taglia</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+      <option>41</option>
+      <option>42</option>
+      <option>43</option>
+      <option>44</option>
+      <option>45</option>
+      <option>46</option>
+    </select>
+
+    <button onclick="acquista('Scarpe Sportive', 40, 'tagliaScarpe')">
+      Acquista
+    </button>
+  </div>
+
+</section>
+
+<div class="paypal">
+  <h2>Pagamento sicuro</h2>
+  <p>Potrai pagare con PayPal dopo aver scelto il prodotto e la taglia.</p>
+  <p class="note">
+    Il collegamento al tuo conto PayPal verrà configurato nel prossimo passaggio.
+  </p>
+</div>
+
+<script>
+  function acquista(prodotto, prezzo, idTaglia) {
+    const taglia = document.getElementById(idTaglia).value;
+
+    if (!taglia) {
+      alert("Scegli prima la taglia.");
+      return;
+    }
+
+    alert(
+      "Hai scelto: " + prodotto +
+      "\\nPrezzo: " + prezzo + " €" +
+      "\\nTaglia: " + taglia +
+      "\\n\\nNel prossimo passaggio collegheremo PayPal."
+    );
+  }
+</script>
+
+</body>
+</html>
