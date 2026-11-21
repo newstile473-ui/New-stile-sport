@@ -4,16 +4,16 @@ const Stripe = require("stripe");
 
 const app = express();
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname));
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   try {
     const { cart, customer } = req.body;
 
-    if (!Array.isArray(cart) || cart.length === 0) {
+    if (!cart || !Array.isArray(cart) || cart.length === 0) {
       return res.status(400).json({
         error: "Il carrello è vuoto."
       });
@@ -34,7 +34,7 @@ app.post("/create-checkout-session", async (req, res) => {
       });
     }
 
-    const prodotti = {
+    const prezzi = {
       "Tuta Sportiva Black & Blue": 60,
       "Tuta Sportiva White & Green": 60,
       "Tuta Sportiva Black & White": 60,
@@ -44,8 +44,8 @@ app.post("/create-checkout-session", async (req, res) => {
 
     const lineItems = cart.map((item) => {
 
-      if (!prodotti[item.name]) {
-        throw new Error("Prodotto non valido.");
+      if (!prezzi[item.name]) {
+        throw new Error("Prodotto non valido: " + item.name);
       }
 
       return {
@@ -55,23 +55,18 @@ app.post("/create-checkout-session", async (req, res) => {
             name: item.name,
             description: "Taglia/Numero: " + item.size
           },
-          unit_amount: prodotti[item.name] * 100
+          unit_amount: prezzi[item.name] * 100
         },
         quantity: 1
       };
     });
 
     const session = await stripe.checkout.sessions.create({
-
       mode: "payment",
-
-      payment_method_types: ["card"],
 
       line_items: lineItems,
 
       customer_email: customer.email,
-
-      billing_address_collection: "auto",
 
       metadata: {
         nome: customer.name,
@@ -95,32 +90,22 @@ app.post("/create-checkout-session", async (req, res) => {
         "/?pagamento=annullato"
     });
 
-    res.json({
+    return res.status(200).json({
       url: session.url
     });
 
   } catch (error) {
 
-    console.error("ERRORE STRIPE:", error);
+    console.error("STRIPE ERROR:", error);
 
-    res.status(500).json({
-      error: "Impossibile creare il pagamento."
+    return res.status(500).json({
+      error: error.message || "Errore Stripe"
     });
   }
 });
 
-
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "index.html")
-  );
-});
-
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(
-    "NEW STILE SPORT avviato sulla porta " + PORT
-  );
+  console.log("NEW STILE SPORT avviato sulla porta " + PORT);
 });
