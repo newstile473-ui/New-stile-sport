@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -20,13 +19,8 @@ header{
   text-align:center;
   padding:45px 20px;
 }
-header h1{
-  margin:0;
-  font-size:40px;
-}
-header p{
-  font-size:17px;
-}
+header h1{margin:0;font-size:40px}
+header p{font-size:17px}
 .hero{
   display:inline-block;
   background:white;
@@ -41,9 +35,7 @@ main{
   margin:auto;
   padding:35px 18px;
 }
-h2{
-  margin-bottom:20px;
-}
+h2{margin-bottom:20px}
 .filtri{
   display:flex;
   gap:10px;
@@ -74,13 +66,8 @@ h2{
   object-fit:cover;
   display:block;
 }
-.info{
-  padding:16px;
-}
-.categoria{
-  color:#777;
-  font-size:14px;
-}
+.info{padding:16px}
+.categoria{color:#777;font-size:14px}
 .nome{
   font-size:19px;
   font-weight:bold;
@@ -114,37 +101,21 @@ footer{
   padding:25px;
   margin-top:30px;
 }
+#cart-box{
+  max-width:600px;
+  margin:30px auto;
+  padding:20px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:#fff;
+}
 @media(max-width:700px){
-  .grid{
-    grid-template-columns:1fr;
-  }
+  .grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
-<script src="https://www.paypal.com/sdk/js?client-id=IL_TUO_CLIENT_ID&currency=EUR"></script>
-
-<div id="paypal-button-container"></div>
-
-<script>
-paypal.Buttons({
-  createOrder: function(data, actions) {
-    return actions.order.create({
-      purchase_units: [{
-        amount: {
-          value: "70.00"
-        }
-      }]
-    });
-  },
-
-  onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-      alert("Pagamento completato. Grazie " + details.payer.name.given_name + "!");
-    });
-  }
-}).render('#paypal-button-container');
-</script><body>
+<body>
 
 <header>
   <h1>NEW STILE SPORT</h1>
@@ -164,96 +135,108 @@ paypal.Buttons({
 
 <div class="grid">
 
+<!-- TUTA 1 -->
 <div class="prodotto tute">
 <img src="IMG_20261120_112739.jpg" alt="Tuta Sportiva Black & Blue">
 <div class="info">
 <div class="categoria">Tute</div>
 <div class="nome">Tuta Sportiva Black & Blue</div>
 <div class="prezzo">60 €</div>
+
 <select>
-<option>Scegli la taglia</option>
+<option value="">Scegli la taglia</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
-  Aggiungi al carrello
-</button></div>
+
+<button class="carrello" onclick="aggiungiTuta(this,'Tuta Sportiva Black & Blue',60)">
+Aggiungi al carrello
+</button>
+</div>
 </div>
 
+<!-- TUTA 2 -->
 <div class="prodotto tute">
 <img src="IMG_20261120_112819.jpg" alt="Tuta Sportiva White & Green">
 <div class="info">
 <div class="categoria">Tute</div>
 <div class="nome">Tuta Sportiva White & Green</div>
 <div class="prezzo">60 €</div>
+
 <select>
-<option>Scegli la taglia</option>
+<option value="">Scegli la taglia</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
-  Aggiungi al carrello
+
+<button class="carrello" onclick="aggiungiTuta(this,'Tuta Sportiva White & Green',60)">
+Aggiungi al carrello
 </button>
 </div>
 </div>
 
+<!-- TUTA 3 -->
 <div class="prodotto tute">
 <img src="IMG_20261120_112853.jpg" alt="Tuta Sportiva Black & White">
 <div class="info">
 <div class="categoria">Tute</div>
 <div class="nome">Tuta Sportiva Black & White</div>
 <div class="prezzo">60 €</div>
+
 <select>
-<option>Scegli la taglia</option>
+<option value="">Scegli la taglia</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
-  Aggiungi al carrello
+
+<button class="carrello" onclick="aggiungiTuta(this,'Tuta Sportiva Black & White',60)">
+Aggiungi al carrello
 </button>
 </div>
 </div>
 
+<!-- TUTA 4 -->
 <div class="prodotto tute">
 <img src="IMG_20261120_123359.jpg" alt="Tuta Sportiva White & Black">
 <div class="info">
 <div class="categoria">Tute</div>
 <div class="nome">Tuta Sportiva White & Black</div>
 <div class="prezzo">60 €</div>
+
 <select>
-<option>Scegli la taglia</option>
+<option value="">Scegli la taglia</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
-  Aggiungi al carrello
+
+<button class="carrello" onclick="aggiungiTuta(this,'Tuta Sportiva White & Black',60)">
+Aggiungi al carrello
 </button>
 </div>
 </div>
 
+<!-- SCARPE -->
 <div class="prodotto scarpe">
 <img src="IMG_20261120_123747.jpg" alt="Scarpe Sportive White">
 <div class="info">
 <div class="categoria">Scarpe</div>
 <div class="nome">Scarpe Sportive White</div>
 <div class="prezzo">40 €</div>
-  <button class="carrello" onclick="aggiungiScarpeAlCarrello()">
-  Aggiungi al carrello
-  </button>
+
 <select>
-<option>Scegli il numero</option>
+<option value="">Scegli il numero</option>
 <option>39</option>
 <option>40</option>
 <option>41</option>
@@ -262,86 +245,56 @@ paypal.Buttons({
 <option>44</option>
 <option>45</option>
 </select>
-<script>
-function aggiungiScarpeAlCarrello() {
-  const numero = prompt("Inserisci il numero delle scarpe:");
 
-  if (!numero) return;
-
-  addToCart("Scarpe", 40, numero);
-}
-</script>
+<button class="carrello" onclick="aggiungiScarpe(this)">
+Aggiungi al carrello
+</button>
 </div>
 </div>
 
 </div>
 </main>
 
+<!-- CARRELLO -->
+<div id="cart-box">
+
+<h2>🛒 Il tuo carrello</h2>
+
+<div id="cart-items">Il carrello è vuoto.</div>
+
+<h3>
+Totale: € <span id="cart-total">0.00</span>
+</h3>
+
+<hr>
+
+<h2>Dati di spedizione</h2>
+
+<input id="customer-name" type="text" placeholder="Nome e cognome" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-email" type="email" placeholder="Email" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-phone" type="tel" placeholder="Telefono" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-address" type="text" placeholder="Indirizzo e numero civico" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-cap" type="text" placeholder="CAP" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-city" type="text" placeholder="Città" style="width:100%;padding:12px;margin:5px 0;">
+<input id="customer-province" type="text" placeholder="Provincia" style="width:100%;padding:12px;margin:5px 0;">
+
+<div id="paypal-button-container" style="margin-top:20px;"></div>
+
+</div>
+
 <footer>
 © 2026 NEW STILE SPORT
 </footer>
 
-<script>
-function mostra(tipo){
-  document.querySelectorAll('.prodotto').forEach(function(p){
-    if(tipo === 'tutti'){
-      p.style.display='block';
-    }else{
-      p.style.display=p.classList.contains(tipo)?'block':'none';
-    }
-  });
-}
-</script>
-
-<script src="https://www.paypal.com/sdk/js?client-id=BAAvXviWzZyJDw-8DXXhL6Mfzyq49GOR0itdKIw1LkzkjA1hNjBjiEx6xToDPqw3FZcE7DH2SfJ7kTXA8I&currency=EUR"></script>
-
-<div id="paypal-button-container"></div>
+<!-- PAYPAL -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAvXviWzZyJDw-8DXXhL6Mfzyq49GOR0itdKIw1LkzkjA1hNjBjiEx6xToDPqw3FZcE7DH2SfJ7kTXA8I&currency=EUR&components=buttons"></script>
 
 <script>
-paypal.Buttons({
-  createOrder: function(data, actions) {
-    return actions.order.create({
-      purchase_units: [{
-        amount: {
-    currency_code: "EUR",
-    value: cart.reduce((totale, prodotto) => totale + prodotto.price, 0).toFixed(2)
-        }
-      }]
-    });
-  },
 
-  onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-      alert("Pagamento completato. Grazie " + details.payer.name.given_name + "!");
-    });
-  }
-}).render('#paypal-button-container');
-</script><!-- CARRELLO E ORDINE -->
-<div id="cart-box" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:12px;background:#fff;">
-  <h2>🛒 Il tuo carrello</h2>
-
-  <div id="cart-items">Il carrello è vuoto.</div>
-  <h3>Totale: € <span id="cart-total">0.00</span></h3>
-
-  <hr>
-
-  <h2>Dati di spedizione</h2>
-
-  <input id="customer-name" type="text" placeholder="Nome e cognome" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-email" type="email" placeholder="Email" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-phone" type="tel" placeholder="Telefono" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-address" type="text" placeholder="Indirizzo e numero civico" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-cap" type="text" placeholder="CAP" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-city" type="text" placeholder="Città" style="width:100%;padding:12px;margin:5px 0;">
-  <input id="customer-province" type="text" placeholder="Provincia" style="width:100%;padding:12px;margin:5px 0;">
-
-  <div id="paypal-button-container" style="margin-top:20px;"></div>
-</div>
-
-<script>
 let cart = [];
 
 function addToCart(name, price, size) {
+
   cart.push({
     name: name,
     price: Number(price),
@@ -351,19 +304,49 @@ function addToCart(name, price, size) {
   updateCart();
 }
 
+function aggiungiTuta(button, nome, prezzo) {
+
+  const select = button.parentElement.querySelector("select");
+  const taglia = select.value;
+
+  if (!taglia) {
+    alert("Scegli una taglia prima di aggiungere la tuta al carrello.");
+    return;
+  }
+
+  addToCart(nome, prezzo, taglia);
+}
+
+function aggiungiScarpe(button) {
+
+  const select = button.parentElement.querySelector("select");
+  const numero = select.value;
+
+  if (!numero) {
+    alert("Scegli il numero delle scarpe prima di aggiungerle al carrello.");
+    return;
+  }
+
+  addToCart("Scarpe Sportive White", 40, numero);
+}
+
 function updateCart() {
+
   const box = document.getElementById("cart-items");
   const totalBox = document.getElementById("cart-total");
 
   if (cart.length === 0) {
+
     box.innerHTML = "Il carrello è vuoto.";
     totalBox.textContent = "0.00";
+
     return;
   }
 
   let total = 0;
 
-  box.innerHTML = cart.map((item, index) => {
+  box.innerHTML = cart.map(function(item, index) {
+
     total += item.price;
 
     return `
@@ -371,41 +354,67 @@ function updateCart() {
         <strong>${item.name}</strong><br>
         Taglia/Numero: ${item.size}<br>
         € ${item.price.toFixed(2)}
-        <button onclick="removeFromCart(${index})" style="margin-left:10px;">
+
+        <button
+          onclick="removeFromCart(${index})"
+          style="margin-left:10px;padding:6px 10px;">
           Rimuovi
         </button>
       </div>
     `;
+
   }).join("");
 
   totalBox.textContent = total.toFixed(2);
 }
 
 function removeFromCart(index) {
+
   cart.splice(index, 1);
+
   updateCart();
 }
 
 function getTotal() {
-  return cart.reduce((sum, item) => sum + item.price, 0);
+
+  return cart.reduce(function(sum, item) {
+
+    return sum + item.price;
+
+  }, 0);
+
 }
 
 function getCustomerData() {
+
   return {
+
     name: document.getElementById("customer-name").value.trim(),
+
     email: document.getElementById("customer-email").value.trim(),
+
     phone: document.getElementById("customer-phone").value.trim(),
+
     address: document.getElementById("customer-address").value.trim(),
+
     cap: document.getElementById("customer-cap").value.trim(),
+
     city: document.getElementById("customer-city").value.trim(),
+
     province: document.getElementById("customer-province").value.trim()
+
   };
+
 }
 
 function validateOrder() {
+
   if (cart.length === 0) {
+
     alert("Il carrello è vuoto.");
+
     return false;
+
   }
 
   const customer = getCustomerData();
@@ -419,42 +428,106 @@ function validateOrder() {
     !customer.city ||
     !customer.province
   ) {
+
     alert("Compila tutti i dati di spedizione prima di pagare.");
+
     return false;
+
   }
 
   return true;
+
 }
 
-<script
-    src="https://www.paypal.com/sdk/js?client-id=AXamAqKGHrWUpY1JMDZBrD4ggedQl-AWxdNB0XjVurvEHdAc3YWGdhEzTshN07Id1myW5fagnVv7xAOD&currency=EUR&components=buttons"
-    data-sdk-integration-source="developer-studio"
-></script>
-paypal.Buttons({
-  style: {
-    label: 'pay',
-    layout: 'vertical'
-},
-    createOrder: function(data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    value: "70.00"
-                }
-            }]
-        });
-    },
-    onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert("Pagamento completato! Grazie " +
-                  details.payer.name.given_name);
-        });
-    },
-  onError: function(err) {
-    console.error("ERRORE PAYPAL:", err);
-    alert("Errore PayPal: " + JSON.stringify(err));
-  }
+function mostra(tipo) {
+
+  document.querySelectorAll(".prodotto").forEach(function(p) {
+
+    if (tipo === "tutti") {
+
+      p.style.display = "block";
+
+    } else {
+
+      p.style.display =
+        p.classList.contains(tipo) ? "block" : "none";
+
     }
+
+  });
+
+}
+
+/* PAYPAL */
+
+paypal.Buttons({
+
+  style: {
+    label: "pay",
+    layout: "vertical"
+  },
+
+  createOrder: function(data, actions) {
+
+    if (!validateOrder()) {
+
+      return Promise.reject(
+        new Error("Ordine non valido")
+      );
+
+    }
+
+    const totale = getTotal();
+
+    return actions.order.create({
+
+      purchase_units: [{
+
+        amount: {
+
+          currency_code: "EUR",
+
+          value: totale.toFixed(2)
+
+        }
+
+      }]
+
+    });
+
+  },
+
+  onApprove: function(data, actions) {
+
+    return actions.order.capture().then(function(details) {
+
+      alert(
+        "Pagamento completato! Grazie " +
+        details.payer.name.given_name +
+        "!"
+      );
+
+      cart = [];
+
+      updateCart();
+
+    });
+
+  },
+
+  onError: function(err) {
+
+    console.error("ERRORE PAYPAL:", err);
+
+    alert(
+      "Si è verificato un errore con il pagamento."
+    );
+
+  }
+
 }).render("#paypal-button-container");
-</script></body>
+
+</script>
+
+</body>
 </html>
