@@ -297,5 +297,116 @@ paypal.Buttons({
     });
   }
 }).render('#paypal-button-container');
+</script><!-- CARRELLO E ORDINE -->
+<div id="cart-box" style="max-width:600px;margin:30px auto;padding:20px;border:1px solid #ddd;border-radius:12px;background:#fff;">
+  <h2>🛒 Il tuo carrello</h2>
+
+  <div id="cart-items">Il carrello è vuoto.</div>
+  <h3>Totale: € <span id="cart-total">0.00</span></h3>
+
+  <hr>
+
+  <h2>Dati di spedizione</h2>
+
+  <input id="customer-name" type="text" placeholder="Nome e cognome" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-email" type="email" placeholder="Email" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-phone" type="tel" placeholder="Telefono" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-address" type="text" placeholder="Indirizzo e numero civico" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-cap" type="text" placeholder="CAP" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-city" type="text" placeholder="Città" style="width:100%;padding:12px;margin:5px 0;">
+  <input id="customer-province" type="text" placeholder="Provincia" style="width:100%;padding:12px;margin:5px 0;">
+
+  <div id="paypal-button-container" style="margin-top:20px;"></div>
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(name, price, size) {
+  cart.push({
+    name: name,
+    price: Number(price),
+    size: size
+  });
+
+  updateCart();
+}
+
+function updateCart() {
+  const box = document.getElementById("cart-items");
+  const totalBox = document.getElementById("cart-total");
+
+  if (cart.length === 0) {
+    box.innerHTML = "Il carrello è vuoto.";
+    totalBox.textContent = "0.00";
+    return;
+  }
+
+  let total = 0;
+
+  box.innerHTML = cart.map((item, index) => {
+    total += item.price;
+
+    return `
+      <div style="padding:10px 0;border-bottom:1px solid #ddd;">
+        <strong>${item.name}</strong><br>
+        Taglia/Numero: ${item.size}<br>
+        € ${item.price.toFixed(2)}
+        <button onclick="removeFromCart(${index})" style="margin-left:10px;">
+          Rimuovi
+        </button>
+      </div>
+    `;
+  }).join("");
+
+  totalBox.textContent = total.toFixed(2);
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function getTotal() {
+  return cart.reduce((sum, item) => sum + item.price, 0);
+}
+
+function getCustomerData() {
+  return {
+    name: document.getElementById("customer-name").value.trim(),
+    email: document.getElementById("customer-email").value.trim(),
+    phone: document.getElementById("customer-phone").value.trim(),
+    address: document.getElementById("customer-address").value.trim(),
+    cap: document.getElementById("customer-cap").value.trim(),
+    city: document.getElementById("customer-city").value.trim(),
+    province: document.getElementById("customer-province").value.trim()
+  };
+}
+
+function validateOrder() {
+  if (cart.length === 0) {
+    alert("Il carrello è vuoto.");
+    return false;
+  }
+
+  const customer = getCustomerData();
+
+  if (
+    !customer.name ||
+    !customer.email ||
+    !customer.phone ||
+    !customer.address ||
+    !customer.cap ||
+    !customer.city ||
+    !customer.province
+  ) {
+    alert("Compila tutti i dati di spedizione prima di pagare.");
+    return false;
+  }
+
+  return true;
+}
+
+
 </script></body>
 </html>
