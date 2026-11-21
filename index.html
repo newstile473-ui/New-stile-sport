@@ -430,6 +430,10 @@ function validateOrder() {
     data-sdk-integration-source="developer-studio"
 ></script>
 paypal.Buttons({
+  style: {
+    label: 'pay',
+    layout: 'vertical'
+},
     createOrder: function(data, actions) {
         return actions.order.create({
             purchase_units: [{
