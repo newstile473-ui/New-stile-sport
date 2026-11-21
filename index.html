@@ -178,8 +178,11 @@ paypal.Buttons({
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello">Aggiungi al carrello</button>
-</div>
+<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
+  Aggiungi al carrello
+<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
+  Aggiungi al carrello
+</button></div>
 </div>
 
 <div class="prodotto tute">
@@ -196,7 +199,9 @@ paypal.Buttons({
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello">Aggiungi al carrello</button>
+<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
+  Aggiungi al carrello
+</button>
 </div>
 </div>
 
@@ -214,7 +219,9 @@ paypal.Buttons({
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello">Aggiungi al carrello</button>
+<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
+  Aggiungi al carrello
+</button>
 </div>
 </div>
 
@@ -232,7 +239,9 @@ paypal.Buttons({
 <option>XL</option>
 <option>XXL</option>
 </select>
-<button class="carrello">Aggiungi al carrello</button>
+<button class="carrello" onclick="addToCart('Tuta', 60, 'Taglia da selezionare')">
+  Aggiungi al carrello
+</button>
 </div>
 </div>
 
@@ -252,7 +261,15 @@ paypal.Buttons({
 <option>44</option>
 <option>45</option>
 </select>
-<button class="carrello">Aggiungi al carrello</button>
+<script>
+function aggiungiScarpeAlCarrello() {
+  const numero = prompt("Inserisci il numero delle scarpe:");
+
+  if (!numero) return;
+
+  addToCart("Scarpe", 40, numero);
+}
+</script>
 </div>
 </div>
 
