@@ -425,11 +425,10 @@ function validateOrder() {
   return true;
 }
 
-
-</script><script src="https://www.paypal.com/sdk/js?client-id=BAAvXviWzZyJDw-8DXXhL6Mfzyq49GOR0itdKIw1LkzkjA1hNjBjiEx6xToDPqw3FZcE7DH2SfJ7kTXA8I&currency=EUR"></script>
-<div id="paypal-button-container"></div>
-
-<script>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AXamAqKGHrWUpY1JMDZBrD4ggedQl-AWxdNB0XjVurvEHdAc3YWGdhEzTshN07Id1myW5fagnVv7xAOD&currency=EUR&components=buttons"
+    data-sdk-integration-source="developer-studio"
+></script>
 paypal.Buttons({
     createOrder: function(data, actions) {
         return actions.order.create({
