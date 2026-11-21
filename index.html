@@ -446,10 +446,10 @@ paypal.Buttons({
                   details.payer.name.given_name);
         });
     },
-
-    onError: function(err) {
-        console.error(err);
-        alert("Si è verificato un errore con il pagamento.");
+  onError: function(err) {
+    console.error("ERRORE PAYPAL:", err);
+    alert("Errore PayPal: " + JSON.stringify(err));
+  }
     }
 }).render("#paypal-button-container");
 </script></body>
