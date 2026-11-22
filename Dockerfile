@@ -1,11 +1,13 @@
-FROM nginx:alpine
+FROM node:20-alpine
 
-COPY index.html /usr/share/nginx/html/index.html
+WORKDIR /app
 
-COPY IMG_20261120_112739.jpg /usr/share/nginx/html/IMG_20261120_112739.jpg
-COPY IMG_20261120_112819.jpg /usr/share/nginx/html/IMG_20261120_112819.jpg
-COPY IMG_20261120_112853.jpg /usr/share/nginx/html/IMG_20261120_112853.jpg
-COPY IMG_20261120_123359.jpg /usr/share/nginx/html/IMG_20261120_123359.jpg
-COPY IMG_20261120_123747.jpg /usr/share/nginx/html/IMG_20261120_123747.jpg
+COPY package*.json ./
 
-EXPOSE 80
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
